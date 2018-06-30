@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"strconv"
 	"testing"
 
 	"github.com/coredns/coredns/core/dnsserver"
@@ -41,7 +40,6 @@ PrivateKey: f03VplaIEA+KHI9uizlemUSbUJH86hPBPjmcUninPoM=
 // }
 // ~~~
 func TestReadme(t *testing.T) {
-	port := 30053
 	caddy.Quiet = true
 	dnsserver.Quiet = true
 
@@ -69,13 +67,12 @@ func TestReadme(t *testing.T) {
 
 		// Test each snippet.
 		for _, in := range inputs {
-			dnsserver.Port = strconv.Itoa(port)
+			dnsserver.Port = "0"
 			server, err := caddy.Start(in)
 			if err != nil {
 				t.Errorf("Failed to start server with %s, for input %q:\n%s", readme, err, in.Body())
 			}
 			server.Stop()
-			port++
 		}
 	}
 }
