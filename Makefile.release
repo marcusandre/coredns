@@ -8,7 +8,8 @@
 # For example: https://coredns.io/2016/09/18/coredns-001-release/ Also send an
 # email to coredns-discuss@ to announce the new version.
 #
-# Get a list of authors for this release with: make -f Makefile.release authors
+# Getting the authors for this release is done with the following command line
+# git log --pretty=format:'%an' v$(VERSION)..master | sort -u
 #
 # Steps:
 # * Up the version in coremain/version.go
@@ -27,9 +28,6 @@
 # * make github-push
 # * make docker
 # * make docker-push
-#
-# Getting the authors for this release is done with the following command line
-# git log --pretty=format:'%an' v$(VERSION)..master | sort -u
 
 EMPTY:=
 SPACE:=$(EMPTY) $(EMPTY)
